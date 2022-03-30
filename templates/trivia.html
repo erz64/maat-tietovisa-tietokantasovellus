@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<title> Paakaupungit </title>
+
+<form action="" method="post">
+
+<h1> {{ question }} </h1>
+
+<img style='display:block; width: 800px;height:500px;' id='base64image' src='data:image/jpeg;base64, {{ image }}'>
+
+<input type="text", name="answer">
+
+<input type="hidden" name="correct" value="{{ correct }}">
+
+<input type="submit" value ="Arvaa">
+
+</form>
+
+
