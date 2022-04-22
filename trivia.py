@@ -1,5 +1,5 @@
 from random import randint
-from flask import make_response
+from flask import session
 from db import db
 
 
@@ -20,10 +20,18 @@ def get_picture(question_answer):
 def get_random_question(question_id):
     amount_sql = "SELECT COUNT(*) FROM questions WHERE question_id =:question_id"
     amount = db.session.execute(amount_sql, {"question_id":question_id}).fetchone()[0]
-    position = randint(0, amount-1)
-    question_sql = "SELECT question FROM questions WHERE question_id =:question_id LIMIT 1 OFFSET :position"
-    question = db.session.execute(question_sql, {"question_id":question_id,"position":position}).fetchone()[0]
-    answer_sql = "SELECT answer FROM questions WHERE question_id =:question_id LIMIT 1 OFFSET :position"
-    answer = db.session.execute(answer_sql, {"question_id":question_id,"position":position}).fetchone()[0]
+    while True:
+        position = randint(0, amount-1)
+        answer_sql = "SELECT answer FROM questions WHERE question_id =:question_id LIMIT 1 OFFSET :position"
+        answer = db.session.execute(answer_sql, {"question_id":question_id,"position":position}).fetchone()[0]
+        if answer in session['asked']:
+            continue
+        else:
+            question_sql = "SELECT question FROM questions WHERE question_id =:question_id LIMIT 1 OFFSET :position"
+            question = db.session.execute(question_sql, {"question_id":question_id,"position":position}).fetchone()[0]
+            asked = session['asked']
+            asked.append(answer)
+            session['asked'] = asked
+            break
     image = get_picture(answer)
     return (question, image, answer)

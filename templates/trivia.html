@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <title> Paakaupungit </title>
 
-<form action="" method="post">
+<form action="/paakaupungit/result" method="post">
 
 <h1> {{ question }} </h1>
 
@@ -11,8 +11,19 @@
 
 <input type="hidden" name="correct" value="{{ correct }}">
 
+<input type="hidden" name="right_answers" value="{{ right_answers }}">
+
+<input type="hidden" name="counter" value="{{ counter }}">
+
 <input type="submit" value ="Arvaa">
 
 </form>
 
+<br>
+
+<hr>
+{% for scores in highscores %}
+{{ scores.username }} Pisteet: {{ scores[1] }} / 10
+<hr>
+{% endfor %}
 
