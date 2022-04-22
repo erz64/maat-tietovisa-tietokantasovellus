@@ -25,7 +25,7 @@ def login_sql(username,password):
 def register(username,password):
     hash_value = generate_password_hash(password)
     sql = "INSERT INTO users (username, password, admin) VALUES (:username, :password, :admin)"
-    db.session.execute(sql, {"username":username, "password":hash_value, "admin": 0})
+    db.session.execute(sql, {"username":username, "password":hash_value, "admin": 1})
     db.session.commit()
 
 def admin_role_required(role):
