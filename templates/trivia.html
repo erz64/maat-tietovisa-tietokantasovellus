@@ -3,19 +3,19 @@
 
 <form action="/paakaupungit/result" method="post">
 
-<h1> {{ question }} </h1>
+    <h1> {{ question }} </h1>
 
-<img style='display:block; width: 800px;height:500px;' id='base64image' src='data:image/jpeg;base64, {{ image }}'>
+    <img style='display:block; width: 800px;height:500px;' id='base64image' src='data:image/jpeg;base64, {{ image }}'>
 
-<input type="text", name="answer">
+    <input type="text" , name="answer">
 
-<input type="hidden" name="correct" value="{{ correct }}">
+    <input type="hidden" name="correct" value="{{ correct }}">
 
-<input type="hidden" name="right_answers" value="{{ right_answers }}">
+    <input type="hidden" name="right_answers" value="{{ right_answers }}">
 
-<input type="hidden" name="counter" value="{{ counter }}">
+    <input type="hidden" name="counter" value="{{ counter }}">
 
-<input type="submit" value ="Arvaa">
+    <input type="submit" value="Arvaa">
 
 </form>
 
@@ -26,4 +26,3 @@
 {{ scores.username }} Pisteet: {{ scores[1] }} / 10
 <hr>
 {% endfor %}
-

@@ -1,11 +1,10 @@
 <form action="{{ url }}" method="POST">
-<p>
-    Oikein! Tuloksesi: {{ right_answers }}/{{ counter }}
-</p>
+    <p>
+        Oikein! Tuloksesi: {{ right_answers }}/{{ counter }}
+    </p>
 
-<input type="hidden" name="counter" value="{{ counter }}">
-<input type="hidden" name="right_answers" value="{{ right_answers }}">
-<input type="submit" name="Seuraava kysymys" value="Seuraava kysymys">
+    <input type="hidden" name="counter" value="{{ counter }}">
+    <input type="hidden" name="right_answers" value="{{ right_answers }}">
+    <input type="submit" name="Seuraava kysymys" value="Seuraava kysymys">
 
 </form>
-
