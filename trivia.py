@@ -14,9 +14,9 @@ def upload_images_and_questions(name, question_answer, id, data, question):
     return "Kuva ja kysymys tallennettu onnistuneesti"
 
 
-def get_picture(question_answer):
-    sql = "SELECT encode(data, 'base64') FROM images WHERE question_answer LIKE :question_answer"
-    result = db.session.execute(sql, {"question_answer": question_answer})
+def get_picture(question_answer, question_id):
+    sql = "SELECT encode(data, 'base64') FROM images WHERE question_answer =:question_answer AND question_id =:question_id"
+    result = db.session.execute(sql, {"question_answer": question_answer, "question_id": question_id})
     data = result.fetchone()[0]
     return data
 
@@ -40,5 +40,5 @@ def get_random_question(question_id):
             asked.append(answer)
             session['asked'] = asked
             break
-    image = get_picture(answer)
+    image = get_picture(answer, question_id)
     return (question, image, answer)

@@ -51,7 +51,9 @@ def capitals_quiz_start():
     session['asked'] = []
     highscores = stats.get_highscores_all("Minkä maan pääkaupunki?")
     question_data = trivia.get_random_question(1)
-    return render_template("trivia.html", question=question_data[0], image=question_data[1], correct=question_data[2], right_answers=0, counter=0, highscores=highscores)
+    url = "/paakaupungit/result"
+    title = "Pääkaupungit"
+    return render_template("trivia.html", title=title, url=url, question=question_data[0], image=question_data[1], correct=question_data[2], right_answers=0, counter=0, highscores=highscores)
 
 
 @app.route("/paakaupungit/result", methods=["post"])
@@ -86,7 +88,9 @@ def capitals_quiz():
     right_answers = int(request.form["right_answers"])
     counter = int(request.form["counter"])
     question_data = trivia.get_random_question(1)
-    return render_template("trivia.html", question=question_data[0], image=question_data[1], correct=question_data[2], right_answers=right_answers, counter=counter, highscores=highscores)
+    url = "/paakaupungit/result"
+    title = "Pääkaupungit"
+    return render_template("trivia.html", title=title, url=url, question=question_data[0], image=question_data[1], correct=question_data[2], right_answers=right_answers, counter=counter, highscores=highscores)
 
 
 @app.route("/ruoat")
@@ -94,7 +98,9 @@ def food_quiz_start():
     session['asked'] = []
     highscores = stats.get_highscores_all("Minkä maan kansallisruoka?")
     question_data = trivia.get_random_question(2)
-    return render_template("trivia.html", question=question_data[0], image=question_data[1], correct=question_data[2], right_answers=0, counter=0, highscores=highscores)
+    url = "/ruoat/result"
+    title = "Kansallisruoat"
+    return render_template("trivia.html", title=title, url=url, question=question_data[0], image=question_data[1], correct=question_data[2], right_answers=0, counter=0, highscores=highscores)
 
 
 @app.route("/ruoat/result", methods=["post"])
@@ -129,7 +135,9 @@ def food_quiz():
     right_answers = int(request.form["right_answers"])
     counter = int(request.form["counter"])
     question_data = trivia.get_random_question(2)
-    return render_template("trivia.html", question=question_data[0], image=question_data[1], correct=question_data[2], right_answers=right_answers, counter=counter, highscores=highscores)
+    url = "/ruoat/result"
+    title = "Kansallisruoat"
+    return render_template("trivia.html", title=title, url=url, question=question_data[0], image=question_data[1], correct=question_data[2], right_answers=right_answers, counter=counter, highscores=highscores)
 
 
 @app.route("/form")
