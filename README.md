@@ -8,12 +8,14 @@
 
 - Sovellusta voi testata [herokussa](https://maat-tietovisa.herokuapp.com/)
 - Sovelluksen ulkonäköä ei vielä muokattu
-- Sovelluksessa yksi tietovisa
-- Tietovisassa sivulla näytetään kysymys ja kuva, ja käyttäjän pitää arvata näiden perusteella kyseinen maa
-- Tietovisan kysymykset tulevat satunnaisesti, joten huonolla tuurilla sama kysymys voi tulla peräkkäin
-- Questions ja images tietokantaa voidaan lisätä kysymys ja kuva [täältä](https://maat-tietovisa.herokuapp.com/form), huom. kuka tahansa voi lisätä tällä hetkellä kuvan ja kysymyksen tietokantaan. Tämä pitää muuttaa vain ylläpitäjälle tulevissa versioissa
+- Sovelluksessa kaksi tietovisaa
+- Tietovisassa sivulla näytetään kysymys, kuva, ja top 10 parhaat tulokset, ja käyttäjän pitää arvata näiden perusteella kyseinen maa
+- Tietovisan kysymykset tulevat satunnaisesti ja sama kysymys ei voi tulla kahta kertaa samassa visassa
+- Visassa on kymmenen kysymystä, ja näihin vastattua hän saa tietää tuloksensa, ja jos hänen tuloksensa on parempi kuin hänen viimeinen tuloksensa ja se yltää kymmenen parhaimman joukkoon, hän pääsee highscores listalle, joka näytetään visojen yhteydessä
+- Käyttäjä voi luoda etusivulla käyttäjän itselleen
+- Questions ja images tietokantoihin voidaan lisätä kysymys ja kuva [täältä](https://maat-tietovisa.herokuapp.com/form), vain käyttäjät joilla on admin role voivat päästä tälle sivulle. Uusia admin käyttäjiä ei voida tehdä ilman ylläpitäjää. Jos haluaa kuitenkin testata järkevän kuvan ja kysymyksen lisäystä visoihin yksi käyttäjistä on: Käyttäjänimi: erz, salasana: tietokanta-sovellus
 
-
-Mahdollisia toimintoja (saa kommentoida):
-- Käyttäjä voi arvostella tietovisan yhdestä viiteen.
-- Käyttäjä näkee hänen tuloksensa muiden käyttäjien tulosten seassa (Highscores).
+Tulevat muutokset:
+- Ulkonäkö kuntoon
+- Viides tietokanta, luultavasti visojen arvostelu
+- Kolmas visa, mahdollisesti maiden liput
