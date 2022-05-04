@@ -154,6 +154,7 @@ def food_quiz():
 def review():
     users.check_csrf()
     star = request.form["star"]
+    print(star)
     question_id = request.form["question_id"]
     stats.insert_into_reviews(session["user_id"], star, question_id)
     return render_template("review.html")
