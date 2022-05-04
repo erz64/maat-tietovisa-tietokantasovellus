@@ -41,4 +41,4 @@ def get_random_question(question_id):
             session['asked'] = asked
             break
     image = get_picture(answer, question_id)
-    return (question, image, answer)
+    return (question, image, answer, question_id)

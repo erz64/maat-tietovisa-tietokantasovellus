@@ -12,3 +12,10 @@ def insert_into_scores(user_id, question, username, score):
     db.session.execute(sql, {
                        "user_id": user_id, "question": question, "username": username, "score": score})
     db.session.commit()
+
+
+def insert_into_reviews(user_id, star, question_id):
+    sql = "INSERT INTO reviews (user_id, star, question_id) SELECT :user_id, :star, :question_id WHERE NOT EXISTS (SELECT user_id FROM reviews WHERE user_id=:user_id AND question_id=:question_id)"
+    db.session.execute(
+        sql, {"user_id": user_id, "star": star, "question_id": question_id})
+    db.session.commit()
