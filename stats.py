@@ -14,6 +14,13 @@ def insert_into_scores(user_id, question, username, score):
     db.session.commit()
 
 
+def get_reviews_all(question_id):
+    sql = "SELECT AVG(star) FROM reviews WHERE question_id=:question_id"
+    stars = db.session.execute(sql, {"question_id": question_id}).fetchone()[0]
+    rounded_stars = round(stars)
+    return rounded_stars
+
+
 def insert_into_reviews(user_id, star, question_id):
     sql = "INSERT INTO reviews (user_id, star, question_id) SELECT :user_id, :star, :question_id WHERE NOT EXISTS (SELECT user_id FROM reviews WHERE user_id=:user_id AND question_id=:question_id)"
     db.session.execute(

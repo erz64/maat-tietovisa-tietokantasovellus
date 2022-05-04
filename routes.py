@@ -10,7 +10,9 @@ app.secret_key = getenv("SECRET_KEY")
 
 @app.route("/")
 def index():
-    return render_template("frontpage.html")
+    stars_capitals = stats.get_reviews_all(1)
+    stars_food = stats.get_reviews_all(2)
+    return render_template("frontpage.html", stars_capitals=stars_capitals, stars_food=stars_food)
 
 
 @app.route("/login", methods=["POST"])
@@ -154,7 +156,6 @@ def food_quiz():
 def review():
     users.check_csrf()
     star = request.form["star"]
-    print(star)
     question_id = request.form["question_id"]
     stats.insert_into_reviews(session["user_id"], star, question_id)
     return render_template("review.html")
