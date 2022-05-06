@@ -1,5 +1,5 @@
 <p>
-    Valitettavasti tämä ei ollut sinun päiväsi...
+    Valitettavasti tänään ei ollut sinun päiväsi...
     <br>
     <br>
     Tuloksesi: {{ right_answers }}/ {{ counter }}
@@ -41,7 +41,7 @@
         </style>
         <div class="stars">
             <form action="/review" method="post">
-              <input class="star star-5" id="5" type="radio" name="star" value="5"/>
+              <input class="star star-5" id="5" type="radio" name="star" required="required" value="5"/>
               <label class="star star-5" for="5"></label>
               <input class="star star-4" id="4" type="radio" name="star" value="4"/>
               <label class="star star-4" for="4"></label>
@@ -53,6 +53,7 @@
               <label class="star star-1" for="1"></label>
               <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
               <input type="hidden" name="question_id" value="{{ question_id }}">
+              <br>
               <input type="submit" value="Arvioi">
             </form>
           </div>
