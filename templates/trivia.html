@@ -11,6 +11,7 @@
     </div>
     <div class="right">
         <p>
+            Top 3 parhaimmat tulokset:
         <hr>
         {% for scores in highscores %}
         {{ scores.username }} Pisteet: {{ scores[1] }} / 10
@@ -19,6 +20,8 @@
         </p>
     </div>
 </div>
+<div>
+    <div class="answer">
 <form action="{{ url }}" method="post">
     <input type="text" , name="answer">
 
@@ -33,9 +36,10 @@
     <input type="submit" value="Arvaa">
 
 </form>
-<br>
-
-<a href="/">Palaa etusivulle</a>
-<br>
+    </div>
+    <div class="return">
+    <a href="/">Palaa etusivulle</a>
+    </div>
+</div>
 
 </body>

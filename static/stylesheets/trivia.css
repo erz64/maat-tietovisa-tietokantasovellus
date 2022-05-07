@@ -37,3 +37,11 @@ form {
     max-width: 50em;
     margin-left:830px;
 }
+.answer{
+    float: left
+}
+
+.return{
+    font-size: 30px;
+    margin-left: 550px;
+}

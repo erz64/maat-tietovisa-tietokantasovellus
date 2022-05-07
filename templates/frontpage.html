@@ -14,8 +14,9 @@
 <nav>
     <li><a href="/paakaupungit">Pääkaupungit</a></li>
     <li><a href="/ruoat">Kansallisruoat</a></li>
+    &nbsp;&nbsp;<li><a href="/liput">Liput</a></li>
     <br>
-    &nbsp;&nbsp;
+    <div class="stars">
     {% if stars_capitals == 5 %}
     
     <span class="fa fa-star checked"></span>
@@ -63,8 +64,9 @@
     <span class="fa fa-star"></span>
     <span class="fa fa-star"></span>
     {% endif %}
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    {% if stars_food == 5 %}
+    </div>
+    <div class="stars">
+    &nbsp;&nbsp;&nbsp;&nbsp;{% if stars_food == 5 %}
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
     <span class="fa fa-star checked"></span>
@@ -101,6 +103,56 @@
     <span class="fa fa-star"></span>
     <span class="fa fa-star"></span>
     {% endif %}
+    </div>
+    <div class="stars">
+    {% if stars_flags == 5 %}
+    
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    
+    {% elif stars_flags == 4 %} 
+    
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    
+    {% elif stars_flags == 3 %}
+    
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    
+    {% elif stars_flags == 2 %}
+    
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    
+    {% elif stars_flags == 1 %}
+    
+    <span class="fa fa-star checked"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    
+    {% else %}
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    <span class="fa fa-star"></span>
+    {% endif %}
+    </div>
     
 </nav>
 
@@ -118,5 +170,9 @@
     <input type="submit" value="Kirjaudu">
 </form>
 {% endif %}
+<br>
 <a href="/register" class="button">Luo uusi tunnus</a>
+{% if session.role == 1 %}
+<a href="/form">Lisää kysymys!</a> 
+{% endif %}
 </body>

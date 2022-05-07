@@ -20,6 +20,7 @@ p {
   }
 
 nav li {
+    margin-left: 130px;
     color: white;
     text-align: center;
     display: inline-block;
@@ -40,4 +41,8 @@ form {
   grid-row-gap: .3em;
   display: block;
   float: right;
+}
+.stars {
+  display: inline-block;
+  margin-left: 150px;
 }

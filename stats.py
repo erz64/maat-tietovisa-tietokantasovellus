@@ -2,7 +2,7 @@ from db import db
 
 
 def get_highscores_all(question):
-    sql = "SELECT username, MAX(score) FROM SCORES WHERE question=:question GROUP BY username ORDER BY MAX(SCORE) DESC LIMIT 10"
+    sql = "SELECT username, MAX(score) FROM SCORES WHERE question=:question GROUP BY username ORDER BY MAX(SCORE) DESC LIMIT 3"
     highscores = db.session.execute(sql, {"question": question}).fetchall()
     return highscores
 
