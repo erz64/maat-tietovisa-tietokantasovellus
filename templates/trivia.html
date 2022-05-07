@@ -1,12 +1,25 @@
 <!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="/static/stylesheets/trivia.css">
+</head>
 <title> {{ title }} </title>
-
-<form action="{{ url }}" method="post">
-
+<body>
     <h1> {{ question }} </h1>
-
-    <img style='display:block; width: 800px;height:500px;' id='base64image' src='data:image/jpeg;base64, {{ image }}'>
-
+<div>
+    <div class="left">
+        <img style='display:block; width: 800px;height:500px;' id='base64image' src='data:image/jpeg;base64, {{ image }}'>
+    </div>
+    <div class="right">
+        <p>
+        <hr>
+        {% for scores in highscores %}
+        {{ scores.username }} Pisteet: {{ scores[1] }} / 10
+        <hr>
+        {% endfor %}
+        </p>
+    </div>
+</div>
+<form action="{{ url }}" method="post">
     <input type="text" , name="answer">
 
     <input type="hidden" name="correct" value="{{ correct }}">
@@ -21,11 +34,8 @@
 
 </form>
 <br>
+
 <a href="/">Palaa etusivulle</a>
 <br>
 
-<hr>
-{% for scores in highscores %}
-{{ scores.username }} Pisteet: {{ scores[1] }} / 10
-<hr>
-{% endfor %}
+</body>

@@ -1,0 +1,39 @@
+h1 {
+    background-image: url(/static/images/header_image.jpg);
+    background-size: 1500px 300px;
+    border-radius: .5em;
+    font-size: 45px;;
+    color: white;
+    padding: 2em 0em;
+    text-align: center;
+  }
+body {
+    color: white;
+    font-size: 35px;
+    margin: auto;
+    max-width: 35em;
+    font-family: 'Helvetica', 'Arial' sans-serif;
+    background-color: rgb(110, 227, 248);
+}
+p {
+    display: inline-block;
+    text-align: auto;
+    font-size: 30px;
+  }
+form {
+    border-radius: .5em;
+    max-width: 15em;
+    grid-template-columns: 5em 10em;
+    grid-row-gap: .3em;
+    display: block;
+    float: left;
+}
+
+.left{
+    float:left;
+}
+
+.right{
+    max-width: 50em;
+    margin-left:830px;
+}
