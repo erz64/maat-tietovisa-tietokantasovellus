@@ -1,178 +1,182 @@
 <!DOCTYPE html>
 <title>Maantieto Visa </title>
+
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/static/stylesheets/main.css">
-<meta name="viewport" content="width=device_width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/stylesheets/main.css">
+    <meta name="viewport" content="width=device_width, initial-scale=1">
 </head>
-<style>.checked {
-    color: orange;
-  }</style>
+<style>
+    .checked {
+        color: orange;
+    }
+</style>
 
 <h1>Maantieto Visa</h1>
-<body>
-<nav>
-    <li><a href="/paakaupungit">Pääkaupungit</a></li>
-    <li><a href="/ruoat">Kansallisruoat</a></li>
-    <li><a href="/liput">Liput</a></li>
-    <br>
-    <div class="stars">
-    {% if stars_capitals == 5 %}
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    
-    {% elif stars_capitals == 4 %} 
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    
-    {% elif stars_capitals == 3 %}
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    
-    {% elif stars_capitals == 2 %}
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    
-    {% elif stars_capitals == 1 %}
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    
-    {% else %}
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    {% endif %}
-    </div>
-    <div class="stars">
-    {% if stars_food == 5 %}
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    {% elif stars_food == 4 %} 
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    {% elif stars_food == 3 %}
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    {% elif stars_food == 2 %}
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    {% elif stars_food == 1 %}
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    {% else %}
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    {% endif %}
-    </div>
-    <div class="stars">
-    {% if stars_flags == 5 %}
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    
-    {% elif stars_flags == 4 %} 
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    
-    {% elif stars_flags == 3 %}
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    
-    {% elif stars_flags == 2 %}
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    
-    {% elif stars_flags == 1 %}
-    
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    
-    {% else %}
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    <span class="fa fa-star"></span>
-    {% endif %}
-    </div>
-    
-</nav>
 
-{% if session.username %}
-<p>Olet kirjautunut nimellä {{ session.username }}</p>
-<a href="/logout">Kirjaudu ulos</a>
-{% else %}
-<form action="/login" method="POST">
-    <p>Tunnus:<br>
-        <input type="text" name="username">
-    </p>
-    <p>Salasana:<br>
-        <input type="password" name="password">
-    </p>
-    <input type="submit" value="Kirjaudu">
-</form>
-{% endif %}
-<br>
-<a href="/register" class="button">Luo uusi tunnus</a>
-{% if session.role == 1 %}
-<a href="/form">Lisää kysymys!</a> 
-{% endif %}
+<body>
+    <nav>
+        <li><a href="/paakaupungit">Pääkaupungit</a></li>
+        <li><a href="/ruoat">Kansallisruoat</a></li>
+        <li><a href="/liput">Liput</a></li>
+        <br>
+        <div class="stars">
+            {% if stars_capitals == 5 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+
+            {% elif stars_capitals == 4 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+
+            {% elif stars_capitals == 3 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+
+            {% elif stars_capitals == 2 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+
+            {% elif stars_capitals == 1 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+
+            {% else %}
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            {% endif %}
+        </div>
+        <div class="stars">
+            {% if stars_food == 5 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            {% elif stars_food == 4 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            {% elif stars_food == 3 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            {% elif stars_food == 2 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            {% elif stars_food == 1 %}
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            {% else %}
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            {% endif %}
+        </div>
+        <div class="stars">
+            {% if stars_flags == 5 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+
+            {% elif stars_flags == 4 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+
+            {% elif stars_flags == 3 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+
+            {% elif stars_flags == 2 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+
+            {% elif stars_flags == 1 %}
+
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+
+            {% else %}
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            {% endif %}
+        </div>
+
+    </nav>
+
+    {% if session.username %}
+    <p>Olet kirjautunut nimellä {{ session.username }}</p>
+    <a href="/logout">Kirjaudu ulos</a>
+    {% else %}
+    <form action="/login" method="POST">
+        <p>Tunnus:<br>
+            <input type="text" name="username">
+        </p>
+        <p>Salasana:<br>
+            <input type="password" name="password">
+        </p>
+        <input type="submit" value="Kirjaudu">
+    </form>
+    {% endif %}
+    <br>
+    <a href="/register" class="button">Luo uusi tunnus</a>
+    {% if session.role == 1 %}
+    <a href="/form">Lisää kysymys!</a>
+    {% endif %}
 </body>

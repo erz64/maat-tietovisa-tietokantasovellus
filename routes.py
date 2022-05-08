@@ -1,4 +1,3 @@
-from pydoc import render_doc
 from app import app
 from flask import redirect, render_template, request, session
 from os import getenv
@@ -14,7 +13,8 @@ def index():
     stars_capitals = stats.get_reviews_all(1)
     stars_food = stats.get_reviews_all(2)
     stars_flags = stats.get_reviews_all(3)
-    return render_template("frontpage.html", stars_capitals=stars_capitals, stars_food=stars_food, stars_flags=stars_flags)
+    return render_template("frontpage.html", stars_capitals=stars_capitals,
+                           stars_food=stars_food, stars_flags=stars_flags)
 
 
 @app.route("/login", methods=["POST"])
@@ -37,7 +37,8 @@ def register():
         if password1 != password2:
             return render_template("errors.html", error="Salasanat eivät ole samat")
         if len(password1) < 3:
-            return render_template("errors.html", error="Salasanassa pitää olla vähintään 3 merkkiä")
+            return render_template("errors.html",
+                                   error="Salasanassa pitää olla vähintään 3 merkkiä")
         if len(password1) > 30:
             return render_template("errors.html", error="Salasanassa saa olla enintään 30 merkkiä")
         users.register(username, password1)
@@ -58,14 +59,15 @@ def capitals_quiz_start():
     try:
         session["username"]
     except:
-        return render_template("errors.html", error = "Sinun pitää kirjautua ensin.")
+        return render_template("errors.html", error="Sinun pitää kirjautua ensin.")
     session['asked'] = []
     highscores = stats.get_highscores_all("Minkä maan pääkaupunki?")
     question_data = trivia.get_random_question(1)
     url = "/paakaupungit/result"
     title = "Pääkaupungit"
-    return render_template("trivia.html", title=title, url=url, question=question_data[0], 
-        image=question_data[1], correct=question_data[2], right_answers=0, counter=0, highscores=highscores)
+    return render_template("trivia.html", title=title, url=url, question=question_data[0],
+                           image=question_data[1], correct=question_data[2],
+                           right_answers=0, counter=0, highscores=highscores)
 
 
 @app.route("/paakaupungit/result", methods=["post"])
@@ -84,15 +86,20 @@ def capitals_result():
             session["user_id"], "Minkä maan pääkaupunki?", session["username"], right_answers)
         del session['asked']
         if 0 <= right_answers <= 3:
-            return render_template("total_result_bad.html", correct=correct, right_answers=right_answers, counter=counter, question_id=1)
+            return render_template("total_result_bad.html", correct=correct,
+                                   right_answers=right_answers, counter=counter, question_id=1)
         if 4 <= right_answers <= 7:
-            return render_template("total_result_ok.html", correct=correct, right_answers=right_answers, counter=counter, question_id=1)
-        else:
-            return render_template("total_result_good.html", correct=correct, right_answers=right_answers, counter=counter, question_id=1)
+            return render_template("total_result_ok.html", correct=correct,
+                                   right_answers=right_answers, counter=counter, question_id=1)
+
+        return render_template("total_result_good.html", correct=correct,
+                               right_answers=right_answers, counter=counter, question_id=1)
     if answer.lower() == correct.lower():
         right_answers += 1
-        return render_template("correct_result.html", url=url, right_answers=right_answers, counter=counter)
-    return render_template("wrong_result.html", correct=correct, url=url, right_answers=right_answers, counter=counter)
+        return render_template("correct_result.html", url=url,
+                               right_answers=right_answers, counter=counter)
+    return render_template("wrong_result.html", correct=correct, url=url,
+                           right_answers=right_answers, counter=counter)
 
 
 @app.route("/paakaupungit/1", methods=["POST"])
@@ -104,8 +111,10 @@ def capitals_quiz():
     question_data = trivia.get_random_question(1)
     url = "/paakaupungit/result"
     title = "Pääkaupungit"
-    return render_template("trivia.html", title=title, url=url, question=question_data[0], image=question_data[1],
-        correct=question_data[2], right_answers=right_answers, counter=counter, highscores=highscores)
+    return render_template("trivia.html", title=title, url=url,
+                           question=question_data[0], image=question_data[1],
+                           correct=question_data[2], right_answers=right_answers,
+                           counter=counter, highscores=highscores)
 
 
 @app.route("/ruoat")
@@ -113,14 +122,15 @@ def food_quiz_start():
     try:
         session["username"]
     except:
-        return render_template("errors.html", error = "Sinun pitää kirjautua ensin.")
+        return render_template("errors.html", error="Sinun pitää kirjautua ensin.")
     session['asked'] = []
     highscores = stats.get_highscores_all("Minkä maan kansallisruoka?")
     question_data = trivia.get_random_question(2)
     url = "/ruoat/result"
     title = "Kansallisruoat"
-    return render_template("trivia.html", title=title, url=url, question=question_data[0], image=question_data[1],
-        correct=question_data[2], right_answers=0, counter=0, highscores=highscores)
+    return render_template("trivia.html", title=title, url=url, question=question_data[0],
+                           image=question_data[1], correct=question_data[2],
+                           right_answers=0, counter=0, highscores=highscores)
 
 
 @app.route("/ruoat/result", methods=["post"])
@@ -139,15 +149,19 @@ def food_result():
             session["user_id"], "Minkä maan kansallisruoka?", session["username"], right_answers)
         del session['asked']
         if 0 <= right_answers <= 3:
-            return render_template("total_result_bad.html", correct=correct, right_answers=right_answers, counter=counter, question_id=2)
+            return render_template("total_result_bad.html", correct=correct,
+                                   right_answers=right_answers, counter=counter, question_id=2)
         if 4 <= right_answers <= 7:
-            return render_template("total_result_ok.html", correct=correct, right_answers=right_answers, counter=counter, question_id=2)
-        else:
-            return render_template("total_result_good.html", correct=correct, right_answers=right_answers, counter=counter, question_id=2)
+            return render_template("total_result_ok.html", correct=correct,
+                                   right_answers=right_answers, counter=counter, question_id=2)
+        return render_template("total_result_good.html", correct=correct,
+                               right_answers=right_answers, counter=counter, question_id=2)
     if answer.lower() == correct.lower():
         right_answers += 1
-        return render_template("correct_result.html", url=url, right_answers=right_answers, counter=counter)
-    return render_template("wrong_result.html", correct=correct, url=url, right_answers=right_answers, counter=counter)
+        return render_template("correct_result.html", url=url,
+                               right_answers=right_answers, counter=counter)
+    return render_template("wrong_result.html", correct=correct, url=url,
+                           right_answers=right_answers, counter=counter)
 
 
 @app.route("/ruoat/1", methods=["POST"])
@@ -159,7 +173,9 @@ def food_quiz():
     question_data = trivia.get_random_question(2)
     url = "/ruoat/result"
     title = "Kansallisruoat"
-    return render_template("trivia.html", title=title, url=url, question=question_data[0], image=question_data[1], correct=question_data[2], right_answers=right_answers, counter=counter, highscores=highscores)
+    return render_template("trivia.html", title=title, url=url, question=question_data[0],
+                           image=question_data[1], correct=question_data[2],
+                           right_answers=right_answers, counter=counter, highscores=highscores)
 
 
 @app.route("/liput")
@@ -167,14 +183,15 @@ def flags_quiz_start():
     try:
         session["username"]
     except:
-        return render_template("errors.html", error = "Sinun pitää kirjautua ensin.")
+        return render_template("errors.html", error="Sinun pitää kirjautua ensin.")
     session['asked'] = []
     highscores = stats.get_highscores_all("Minkä maan lippu?")
     question_data = trivia.get_random_question(3)
     url = "/liput/result"
     title = "Liput"
-    return render_template("trivia.html", title=title, url=url, question=question_data[0], 
-        image=question_data[1], correct=question_data[2], right_answers=0, counter=0, highscores=highscores)
+    return render_template("trivia.html", title=title, url=url, question=question_data[0],
+                           image=question_data[1], correct=question_data[2],
+                           right_answers=0, counter=0, highscores=highscores)
 
 
 @app.route("/liput/result", methods=["post"])
@@ -193,15 +210,19 @@ def flags_result():
             session["user_id"], "Minkä maan lippu?", session["username"], right_answers)
         del session['asked']
         if 0 <= right_answers <= 3:
-            return render_template("total_result_bad.html", correct=correct, right_answers=right_answers, counter=counter, question_id=1)
+            return render_template("total_result_bad.html", correct=correct,
+                                   right_answers=right_answers, counter=counter, question_id=1)
         if 4 <= right_answers <= 7:
-            return render_template("total_result_ok.html", correct=correct, right_answers=right_answers, counter=counter, question_id=1)
-        else:
-            return render_template("total_result_good.html", correct=correct, right_answers=right_answers, counter=counter, question_id=1)
+            return render_template("total_result_ok.html", correct=correct,
+                                   right_answers=right_answers, counter=counter, question_id=1)
+        return render_template("total_result_good.html", correct=correct,
+                               right_answers=right_answers, counter=counter, question_id=1)
     if answer.lower() == correct.lower():
         right_answers += 1
-        return render_template("correct_result.html", url=url, right_answers=right_answers, counter=counter)
-    return render_template("wrong_result.html", correct=correct, url=url, right_answers=right_answers, counter=counter)
+        return render_template("correct_result.html", url=url,
+                               right_answers=right_answers, counter=counter)
+    return render_template("wrong_result.html", correct=correct, url=url,
+                           right_answers=right_answers, counter=counter)
 
 
 @app.route("/liput/1", methods=["POST"])
@@ -213,8 +234,9 @@ def flags_quiz():
     question_data = trivia.get_random_question(3)
     url = "/liput/result"
     title = "Liput"
-    return render_template("trivia.html", title=title, url=url, question=question_data[0], image=question_data[1],
-        correct=question_data[2], right_answers=right_answers, counter=counter, highscores=highscores)
+    return render_template("trivia.html", title=title, url=url, question=question_data[0],
+                           image=question_data[1], correct=question_data[2],
+                           right_answers=right_answers, counter=counter, highscores=highscores)
 
 
 @app.route("/review", methods=["post"])

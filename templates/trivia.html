@@ -1,45 +1,48 @@
 <!DOCTYPE html>
+
 <head>
     <link rel="stylesheet" href="/static/stylesheets/trivia.css">
 </head>
 <title> {{ title }} </title>
+
 <body>
     <h1> {{ question }} </h1>
-<div>
-    <div class="left">
-        <img style='display:block; width: 800px;height:500px;' id='base64image' src='data:image/jpeg;base64, {{ image }}'>
+    <div>
+        <div class="left">
+            <img style='display:block; width: 800px;height:500px;' id='base64image'
+                src='data:image/jpeg;base64, {{ image }}'>
+        </div>
+        <div class="right">
+            <p>
+                Top 3 parhaimmat tulokset:
+                <hr>
+                {% for scores in highscores %}
+                {{ scores.username }} Pisteet: {{ scores[1] }} / 10
+                <hr>
+                {% endfor %}
+            </p>
+        </div>
     </div>
-    <div class="right">
-        <p>
-            Top 3 parhaimmat tulokset:
-        <hr>
-        {% for scores in highscores %}
-        {{ scores.username }} Pisteet: {{ scores[1] }} / 10
-        <hr>
-        {% endfor %}
-        </p>
+    <div>
+        <div class="answer">
+            <form action="{{ url }}" method="post">
+                <input type="text" , name="answer">
+
+                <input type="hidden" name="correct" value="{{ correct }}">
+
+                <input type="hidden" name="right_answers" value="{{ right_answers }}">
+
+                <input type="hidden" name="counter" value="{{ counter }}">
+
+                <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+
+                <input type="submit" value="Arvaa">
+
+            </form>
+        </div>
+        <div class="return">
+            <a href="/">Palaa etusivulle</a>
+        </div>
     </div>
-</div>
-<div>
-    <div class="answer">
-<form action="{{ url }}" method="post">
-    <input type="text" , name="answer">
-
-    <input type="hidden" name="correct" value="{{ correct }}">
-
-    <input type="hidden" name="right_answers" value="{{ right_answers }}">
-
-    <input type="hidden" name="counter" value="{{ counter }}">
-
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-
-    <input type="submit" value="Arvaa">
-
-</form>
-    </div>
-    <div class="return">
-    <a href="/">Palaa etusivulle</a>
-    </div>
-</div>
 
 </body>
